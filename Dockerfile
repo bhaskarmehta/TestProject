@@ -3,7 +3,7 @@ WORKDIR /app
 ## Copyin the current directory into Working Directory
 COPY . .
 RUN npm install
-RUN ng build -y
+RUN npm run build 
 
 ## Copy the build to Nginx server
 FROM nginx:latest
