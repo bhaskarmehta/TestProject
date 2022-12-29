@@ -1,0 +1,35 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+        name: mydeployment
+spec:
+        replicas: 2
+        selector:
+             matchLabels:   
+                name: deployment
+        template:
+            metadata:
+                name: deploymentPod
+                labels:
+                      name: deployment
+            spec:
+                containers:
+                     - name: c00
+                       image: bhasmeht/imageb1
+                       ports:
+                         - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+        name: myservice
+spec:
+        selector:
+                name: deployment
+        ports:
+            - protocol: "TCP"
+              port: 80
+              targetPort: 80
+        type: NodePort        
+        
